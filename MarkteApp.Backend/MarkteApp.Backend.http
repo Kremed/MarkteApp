@@ -1,0 +1,6 @@
+@MarkteApp.Backend_HostAddress = http://localhost:5172
+
+GET {{MarkteApp.Backend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

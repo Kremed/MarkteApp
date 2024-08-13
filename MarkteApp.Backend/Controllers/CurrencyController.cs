@@ -1,14 +1,18 @@
 ﻿using MarkteApp.Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
 namespace MarkteApp.Backend.Controllers
 {
     //كلاس يدعي كنترولر يتم فيه انشاء نقاط النهاية المراد الوصول اليها عبره
     //Route :api/Currency
-    [Route("api/[controller]")]
+
+
     [ApiController]
+    [Route("api/[controller]")]
     public class CurrencyController(CurrenciyDbContext db) : ControllerBase
     {
 
@@ -21,7 +25,7 @@ namespace MarkteApp.Backend.Controllers
             var currenciesList = await db.Currencies
                                 .Where(c => c.IsActive == true)
                                 .ToListAsync();
-
+          
             //LINQ Query syntax:
             //var currenciesListQ = await (from Currency in db.Currencies
             //                             where Currency.IsActive == true
@@ -39,6 +43,27 @@ namespace MarkteApp.Backend.Controllers
         [HttpPost("admin/createCurrency")]
         public async Task<IActionResult> createCurrency([FromBody] Currency newCurrency)
         {
+
+          
+            
+
+            if (!ModelState.IsValid)
+            {
+                //return ValidationProblem("الرجاء التحقق من قائمة الاخطاء, يوجد خطاء في البيانات");
+
+                string? firstError = ModelState.Values.FirstOrDefault()
+                                    .Errors.FirstOrDefault()!
+                                    .ErrorMessage;
+
+                return BadRequest(firstError);
+            }
+
+         
+
+
+
+
+
 
             var CurrencyFromDataBase = await db.Currencies
                                         .Where(x => x.Name == newCurrency.Name || x.Code == newCurrency.Code)
@@ -162,6 +187,7 @@ namespace MarkteApp.Backend.Controllers
 
             return Ok("تم حذف العملة من جدول العملات بنجاح");
         }
+
 
         //نقطة نهاية خاصة بأضافة سعر عملة في جدول الاسعار بدلالة معرف العملة من جدول العملات
         [HttpPost("admin/createCurrencyPrice/{currencyID}")]

@@ -1,20 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MarkteApp.Backend.Models;
 
 public partial class Currency
 {
+    //[Required(ErrorMessage = "حقل ID حقل مطلوب, الرجاء التحقق من البيانات واعادة المحاولة.")]
+    //[Range(1, 15, ErrorMessage = "سعر العملة مبالغ فيه, الرجاء تحديد السعر بين 1 و 15.")]
     public int Id { get; set; }
 
+
+    [Required(ErrorMessage = "Name is required.")]
+    [StringLength(50, ErrorMessage = "لايمكن ان يكون طول الاسم اطول من 50 حرف, الرجاء تغير الاسم الخاص بالعملة")]
+    //[EmailAddress(ErrorMessage = "هذا الحقل ليس بريد الكتروني, الرجاء اعادة المحاولة ببيانات صحيحة.")]
     public string Name { get; set; } = null!;
 
+
+    [Required(ErrorMessage = "الوصف مطلوب الرجاء كتابة وصف لتحسين تجربة المستخدم في التطبيق.")]
     public string Description { get; set; } = null!;
 
+    [Required(ErrorMessage = "كود العملة اجباري.")]
+    [StringLength(6, MinimumLength = 6, ErrorMessage = "كود العملة يجب ان يتكون من 6 حروف فقط")]
+    [RegularExpression(@"^[A-Z]{6}$", ErrorMessage = "يجب ان يتكون الكود من 6 حروف انجليزية كبيرة, الارقام والحروف الصغيرة لاتقبل")]
     public string Code { get; set; } = null!;
 
+    [Required(ErrorMessage = "الرجاء أضافة رابط الصورة ,هذا الحقل مطلوب لايمكن تركه فارغأ.")]
+    [Url(ErrorMessage = "الصورة يجب ان تكون برابط صالح.")]
+    [RegularExpression(@"^https?:\/\/.*\.(jpg|jpeg|png|gif|bmp|webp)$", ErrorMessage = "الرابط يجب ان يكون لصورة مثلا: (jpg, jpeg, png, gif, bmp, webp).")]
     public string ImageUrl { get; set; } = null!;
-
     public bool IsActive { get; set; }
 
 

@@ -4,6 +4,10 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+                //.ConfigureApiBehaviorOptions(options =>
+                // {
+                //     options.SuppressModelStateInvalidFilter = true;
+                // });
 
 //جلب جملة الاتصال من ملف الاعدادات في مشروعنا [appsettings.json]
 //ووضعها في متغير من نوع ستريج [String]

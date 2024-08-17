@@ -93,7 +93,7 @@ namespace MarkteApp.Backend.Controllers
 
 
         //نقطة النهاية الخاصة بحذف عملة من قاعدة البيانات
-        [HttpDelete("admin/deleteCurrency")]
+        [HttpPost("admin/deleteCurrency")]
         public async Task<IActionResult> deleteCurrency([FromQuery] int currencyID)
         {
             var CurrencyFromDataBase = await db.Currencies
@@ -170,7 +170,7 @@ namespace MarkteApp.Backend.Controllers
         }
 
         //نقطة النهاية الخاصة بحذف سجل سعر عملة من قاعدة البيانات
-        [HttpDelete("admin/deleteCurrencyPrice")]
+        [HttpPost("admin/deleteCurrencyPrice")]
         public async Task<IActionResult> deleteCurrencyPrice(int priceID)
         {
             var RecordFromDataBase = await db.CurrencyPrices

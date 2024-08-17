@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkteApp.Backend", "MarkteApp.Backend\MarkteApp.Backend.csproj", "{9AC1F575-6D03-42B5-A91E-DBE9ED631BA8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkteApp.Backend", "MarkteApp.Backend\MarkteApp.Backend.csproj", "{9AC1F575-6D03-42B5-A91E-DBE9ED631BA8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashbord", "Dashbord\Dashbord.csproj", "{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,12 @@ Global
 		{9AC1F575-6D03-42B5-A91E-DBE9ED631BA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AC1F575-6D03-42B5-A91E-DBE9ED631BA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AC1F575-6D03-42B5-A91E-DBE9ED631BA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

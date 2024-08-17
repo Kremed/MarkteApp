@@ -4,10 +4,10 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-                //.ConfigureApiBehaviorOptions(options =>
-                // {
-                //     options.SuppressModelStateInvalidFilter = true;
-                // });
+//.ConfigureApiBehaviorOptions(options =>
+// {
+//     options.SuppressModelStateInvalidFilter = true;
+// });
 
 //جلب جملة الاتصال من ملف الاعدادات في مشروعنا [appsettings.json]
 //ووضعها في متغير من نوع ستريج [String]
@@ -23,12 +23,17 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+//if (app.Environment.IsDevelopment()) 
+//    //Local = IsDevelopment  
+//    //Libyan Spider = Production
+//{
+//    app.UseSwagger();
+//    app.UseSwaggerUI();
+//}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 

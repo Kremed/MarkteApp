@@ -93,4 +93,8 @@
 	  <Folder Include="Views\MarktingViews\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\MarketApp.Shered\MarketApp.Shered.csproj" />
+	</ItemGroup>
+
 </Project>

@@ -1,6 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MarkteApp.Backend.Models;
+
+namespace MarketApp.Shered;
+
 
 public partial class Currency
 {
@@ -28,7 +33,9 @@ public partial class Currency
     [RegularExpression(@"^https?:\/\/.*\.(jpg|jpeg|png|gif|bmp|webp)$", ErrorMessage = "الرابط يجب ان يكون لصورة مثلا: (jpg, jpeg, png, gif, bmp, webp).")]
     public string ImageUrl { get; set; } = null!;
     public bool IsActive { get; set; }
+    public DateTime insertedDate { get; set; }
 
+    public List<CurrencyPrice> currencyPrices = new();
 
     public static string Validate(Currency currency)
     {

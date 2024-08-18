@@ -1,4 +1,5 @@
-﻿using MarkteApp.Backend.Models;
+﻿using MarketApp.Backend;
+
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

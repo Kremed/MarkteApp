@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkteApp.Backend", "Markte
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashbord", "Dashbord\Dashbord.csproj", "{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketApp.Shered", "MarketApp.Shered\MarketApp.Shered.csproj", "{84BC7706-7039-4A48-AD37-3C70A1847A23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F1EEC2A3-F333-4B6C-9C2E-B1D5F7F5EB52}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

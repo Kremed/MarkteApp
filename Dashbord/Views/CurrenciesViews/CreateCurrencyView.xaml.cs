@@ -1,8 +1,8 @@
-﻿using MarkteApp.Backend.Models;
-using Newtonsoft.Json;
-using RestSharp;
+﻿
+
 
 namespace Dashbord.Views.CurrenciesViews;
+
 
 public partial class CreateCurrencyView : ContentPage
 {
@@ -58,13 +58,7 @@ public partial class CreateCurrencyView : ContentPage
     {
         try
         {
-            //Currency currency = new ();
-
-            //currency.Name = TxtImageUrl.Text;
-            //currency.Code = "";
-            //currency.Description = TxtImageUrl.Text;
-            //currency.ImageUrl = TxtImageUrl.Text;
-            //currency.IsActive = SwActiveState.IsToggled;
+            string? aaa = TxtCode.Text?.ToUpper().Trim();
 
             Currency currency = new Currency()
             {
@@ -76,6 +70,7 @@ public partial class CreateCurrencyView : ContentPage
             };
 
             var result = Currency.Validate(currency);
+
             if (result != "OK")
             {
                 await DisplayAlert("الرجاء تأكيد البيانات", result, "OK");
@@ -83,21 +78,27 @@ public partial class CreateCurrencyView : ContentPage
             }
 
 
-           
+            //(1) Call API Endpoint via Rest Sharp NuGet Packege + Newtonsoft.Json =>
+
             var client = new RestClient();
 
             var request = new RestRequest("https://maui.ly/api/Currency/admin/createCurrency", Method.Post);
-            
-            request.AddHeader("Content-Type", "application/json");
-            
+
             var json = JsonConvert.SerializeObject(currency);
-           
+
             request.AddJsonBody(json);
-           
+
+            request.AddHeader("Content-Type", "application/json");
+
             RestResponse response = await client.ExecuteAsync(request);
 
             if (response.IsSuccessful)
             {
+                TxtName.Text = "";
+                TxtDiscrption.Text = "";
+                TxtCode.Text = "";
+                TxtCode.Text = "";
+                SwActiveState.IsToggled = true;
                 await DisplayAlert("عملية ناجحة", $"تمت أضافة العملة بنجاح : {currency.Name}", "موافق");
             }
             else
@@ -105,13 +106,7 @@ public partial class CreateCurrencyView : ContentPage
                 await DisplayAlert("عملية فاشلة", response.Content, "موافق");
             }
 
-
-
-
-
-
-
-
+            //(2) Call API Endpoint via HttpClient By Microsoft + Newtonsoft.Json =>
 
             //var client = new HttpClient();
 
@@ -123,28 +118,9 @@ public partial class CreateCurrencyView : ContentPage
             //request.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
             //var response = await client.SendAsync(request);
-
-
-
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-
-            throw;
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

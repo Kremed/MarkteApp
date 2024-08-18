@@ -1,4 +1,6 @@
-﻿using MarkteApp.Backend.Models;
+﻿
+using MarketApp.Backend;
+using MarketApp.Shered;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -43,10 +45,7 @@ namespace MarkteApp.Backend.Controllers
         [HttpPost("admin/createCurrency")]
         public async Task<IActionResult> createCurrency([FromBody] Currency newCurrency)
         {
-
-          
-            
-
+           
             if (!ModelState.IsValid)
             {
                 //return ValidationProblem("الرجاء التحقق من قائمة الاخطاء, يوجد خطاء في البيانات");

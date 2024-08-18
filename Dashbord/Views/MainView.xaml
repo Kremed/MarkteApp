@@ -12,9 +12,48 @@
             RowDefinitions="auto,auto,auto,auto"
             RowSpacing="10">
 
-
+            <!--  Row 1) =>  أرشيف عملات النظام  -->
             <Border
                 Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                Padding="10"
+                HeightRequest="100"
+                HorizontalOptions="FillAndExpand"
+                StrokeShape="RoundRectangle 10"
+                StrokeThickness="1">
+
+                <Grid
+                    ColumnDefinitions="50,*"
+                    ColumnSpacing="10"
+                    VerticalOptions="CenterAndExpand">
+                    <Image
+                        Grid.Column="0"
+                        HeightRequest="50"
+                        Source="archive_currency.png"
+                        VerticalOptions="FillAndExpand"
+                        WidthRequest="50" />
+
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+                        <Label
+                            FontFamily="Black"
+                            FontSize="18"
+                            Text="أرشيف عملات النظام" />
+                        <Label FontSize="12" Text="من هنا يمكنك أضافة عملة جديدة الي مجموعة العملات الخاصة بتطبيقكـ, الرجاء ملاء البيانات كاملة لتقديم أفضل تجربة مستخدم ممكنة" />
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer
+                        x:Name="BrdCurenciesArchive"
+                        NumberOfTapsRequired="1"
+                        Tapped="BrdCurenciesArchive_Tapped" />
+                </Border.GestureRecognizers>
+            </Border>
+
+            <!--  Row 2) => أضافة عملة جديدة  -->
+            <Border
+                Grid.Row="2"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 Padding="10"
@@ -49,37 +88,6 @@
                         NumberOfTapsRequired="1"
                         Tapped="BrdCreateCurency_Tapped" />
                 </Border.GestureRecognizers>
-            </Border>
-
-            <Border
-                Grid.Row="2"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Padding="10"
-                HeightRequest="100"
-                HorizontalOptions="FillAndExpand"
-                StrokeShape="RoundRectangle 10"
-                StrokeThickness="1">
-
-                <Grid
-                    ColumnDefinitions="50,*"
-                    ColumnSpacing="10"
-                    VerticalOptions="CenterAndExpand">
-                    <Image
-                        Grid.Column="0"
-                        HeightRequest="50"
-                        Source="archive_currency.png"
-                        VerticalOptions="FillAndExpand"
-                        WidthRequest="50" />
-
-                    <VerticalStackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
-                        <Label
-                            FontFamily="Black"
-                            FontSize="18"
-                            Text="أرشيف عملات انلظام" />
-                        <Label FontSize="12" Text="من هنا يمكنك أضافة عملة جديدة الي مجموعة العملات الخاصة بتطبيقكـ, الرجاء ملاء البيانات كاملة لتقديم أفضل تجربة مستخدم ممكنة" />
-                    </VerticalStackLayout>
-                </Grid>
             </Border>
 
         </Grid>

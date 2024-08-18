@@ -1,4 +1,8 @@
-﻿global using Dashbord.Views;
+﻿global using RestSharp;
+global using Dashbord.Views;
+global using Newtonsoft.Json;
+global using MarketApp.Shered;
+global using Dashbord.Views.CurrenciesViews;
 
 namespace Dashbord
 {
@@ -19,8 +23,6 @@ namespace Dashbord
                     fonts.AddFont("Zain-Black.ttf", "Black");
                 });
 
-
-          
             return builder.Build();
         }
     }

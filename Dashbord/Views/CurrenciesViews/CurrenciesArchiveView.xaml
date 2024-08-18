@@ -1,12 +1,118 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Dashbord.Views.CurrenciesViews.CurrenciesArchiveView"
-             Title="CurrenciesArchiveView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+<ContentPage
+    x:Class="Dashbord.Views.CurrenciesViews.CurrenciesArchiveView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MarkteApp.Dashbord.Models"
+    Title="CurrenciesArchiveView"
+    FlowDirection="RightToLeft">
+
+    <ScrollView VerticalOptions="FillAndExpand">
+
+        <VerticalStackLayout Margin="10" VerticalOptions="FillAndExpand">
+
+            <CollectionView x:Name="CurrenciesCollectionView" VerticalOptions="FillAndExpand">
+
+
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+
+                    <!--<GridItemsLayout
+                        HorizontalItemSpacing="10"
+                        Orientation="Horizontal"
+                        Span="2"
+                        VerticalItemSpacing="10" />-->
+                </CollectionView.ItemsLayout>
+
+
+
+
+
+                <!--  شكل عرض البيانات : ItemTemplate  -->
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Currency">
+
+                        <Border Padding="10">
+                            <Grid ColumnDefinitions="40,*,auto" ColumnSpacing="10">
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFill"
+                                    HeightRequest="40"
+                                    Source="{Binding ImageUrl}"
+                                    WidthRequest="40" />
+
+                                <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                    <Label
+                                        FontFamily="Bold"
+                                        FontSize="16"
+                                        Text="{Binding Name}" />
+                                    <Label Text="{Binding Description}" />
+                                </StackLayout>
+
+                                <Label
+                                    Grid.Column="2"
+                                    Padding="5"
+                                    BackgroundColor="Blue"
+                                    Text="{Binding Code}"
+                                    TextColor="White"
+                                    VerticalOptions="CenterAndExpand" />
+                            </Grid>
+                        </Border>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <!--  عندما تكون القائمة لا تحتوي علي عناصر : EmptyView  -->
+                <CollectionView.EmptyView>
+                    <ContentView>
+
+                        <Border Margin="10" HeightRequest="200">
+
+                            <StackLayout
+                                Padding="10"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand">
+                                <Label
+                                    FontFamily="Bold"
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    Text="لايوجد بيانات لعرضها الان" />
+                                <Label
+                                    FontSize="16"
+                                    HorizontalTextAlignment="Center"
+                                    Text="الرجاء اعادة المحاولة مرة اخري" />
+                                <Button Clicked="Button_Clicked" Text="عودة الي الرئيسية" />
+                            </StackLayout>
+
+                        </Border>
+
+                    </ContentView>
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
 </ContentPage>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

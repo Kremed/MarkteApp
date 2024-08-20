@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="Dashbord.Views.CustomViews.PageHeaderView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    FlowDirection="RightToLeft">
+
+    <Grid
+        Padding="20"
+        BackgroundColor="Beige"
+        ColumnDefinitions="*,*,*"
+        HeightRequest="60"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="Start">
+
+        <Image
+            Grid.Column="0"
+            HeightRequest="30"
+            HorizontalOptions="Start"
+            Source="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cryptocurrency_Logo.svg/2161px-Cryptocurrency_Logo.svg.png"
+            WidthRequest="30" />
+
+        <Label
+            Grid.Column="1"
+            FontFamily="Bold"
+            Text="تطبيق اسعار الاسواق"
+            TextColor="Black"
+            VerticalOptions="CenterAndExpand" />
+
+        <Image
+            Grid.Column="2"
+            HeightRequest="30"
+            HorizontalOptions="End"
+            Source="back_arrow.png"
+            WidthRequest="30">
+            <Image.GestureRecognizers>
+                <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="TapGestureRecognizer_Tapped" />
+            </Image.GestureRecognizers>
+        </Image>
+
+        
+    </Grid>
+
+</ContentView>

@@ -3,18 +3,24 @@
     x:Class="Dashbord.Views.CurrenciesViews.CreateCurrencyView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customViews="clr-namespace:Dashbord.Views.CustomViews"
     Title="CreateCurrencyView"
     FlowDirection="RightToLeft">
 
     <VerticalStackLayout Margin="20,10" VerticalOptions="FillAndExpand">
+        <customViews:PageHeaderView Grid.Row="0" Grid.ColumnSpan="2" />
+
         <!--  Title  -->
         <Label
+            x:Name="LblTitle"
+            Margin="0,20,0,0"
             FontFamily="Bold"
             FontSize="20"
             Text="أضافة عملة جديدة:" />
 
         <!--  Discrption  -->
         <Label
+            x:Name="LblDescrption"
             FontFamily="Bold"
             FontSize="12"
             Text="من هنا يمكنك أضافة عملة جديدة الي مجموعة العملات الخاصة بتطبيقكـ, الرجاء ملاء البيانات كاملة لتقديم أفضل تجربة مستخدم ممكنة" />

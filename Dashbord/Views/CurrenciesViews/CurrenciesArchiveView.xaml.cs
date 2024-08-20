@@ -1,4 +1,6 @@
 ﻿
+
+
 namespace Dashbord.Views.CurrenciesViews;
 
 public partial class CurrenciesArchiveView : ContentPage
@@ -12,6 +14,8 @@ public partial class CurrenciesArchiveView : ContentPage
             await GetCurrencies();
         });
     }
+
+    //OnAppearing
 
     public async Task GetCurrencies()
     {
@@ -50,6 +54,35 @@ public partial class CurrenciesArchiveView : ContentPage
         }
         catch (Exception)
         {
+        }
+    }
+
+    private async void CurrenciesCollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        try
+        {
+            if (e.CurrentSelection.FirstOrDefault() is Currency selectedItem)
+            {
+                int selectedId = selectedItem.Id;
+                await Navigation.PushModalAsync(new CurrenciyInfoView(selectedItem));
+
+
+            }
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    private async void refreshView_Refreshing(object sender, EventArgs e)
+    {
+        try
+        {
+            await GetCurrencies();
+        }
+        finally
+        {
+            refreshView.IsRefreshing = false;
         }
     }
 }

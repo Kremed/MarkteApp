@@ -33,9 +33,7 @@ public partial class Currency
     [RegularExpression(@"^https?:\/\/.*\.(jpg|jpeg|png|gif|bmp|webp)$", ErrorMessage = "الرابط يجب ان يكون لصورة مثلا: (jpg, jpeg, png, gif, bmp, webp).")]
     public string ImageUrl { get; set; } = null!;
     public bool IsActive { get; set; }
-    public DateTime insertedDate { get; set; }
 
-    public List<CurrencyPrice> currencyPrices = new();
 
     public static string Validate(Currency currency)
     {

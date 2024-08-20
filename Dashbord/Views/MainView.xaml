@@ -3,14 +3,19 @@
     x:Class="Dashbord.Views.MainView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customViews1="clr-namespace:Dashbord.Views.CustomViews"
     Title="MainView"
     FlowDirection="RightToLeft">
-    <VerticalStackLayout Margin="20,20">
+
+    <VerticalStackLayout Margin="20,10">
+
+        <customViews1:PageHeaderView Grid.Row="0" Grid.ColumnSpan="2" />
         <Grid
             ColumnDefinitions="*,*"
             ColumnSpacing="10"
             RowDefinitions="auto,auto,auto,auto"
             RowSpacing="10">
+
 
             <!--  Row 1) =>  أرشيف عملات النظام  -->
             <Border
@@ -50,6 +55,7 @@
                         Tapped="BrdCurenciesArchive_Tapped" />
                 </Border.GestureRecognizers>
             </Border>
+
 
             <!--  Row 2) => أضافة عملة جديدة  -->
             <Border
@@ -91,5 +97,6 @@
             </Border>
 
         </Grid>
+
     </VerticalStackLayout>
 </ContentPage>

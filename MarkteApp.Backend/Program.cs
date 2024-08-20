@@ -4,6 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigins",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:26484", "http://localhost:5298", "https://localhost:7065")
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
 builder.Services.AddControllers();
 //.ConfigureApiBehaviorOptions(options =>
 // {
@@ -33,10 +44,12 @@ var app = builder.Build();
 //    app.UseSwaggerUI();
 //}
 app.UseSwagger();
+
 app.UseSwaggerUI();
 
-
 app.UseHttpsRedirection();
+
+app.UseCors("AllowSpecificOrigins");
 
 app.UseAuthorization();
 

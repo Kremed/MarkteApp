@@ -65,6 +65,7 @@
 	  <None Remove="Resources\Fonts\Zain-Regular.ttf" />
 	  <None Remove="Resources\Images\add.svg" />
 	  <None Remove="Resources\Images\archive_currency.png" />
+	  <None Remove="Resources\Images\back_arrow.png" />
 	  <None Remove="Resources\Images\currency_archive.png" />
 	  <None Remove="Resources\Images\currency_title_cover.png" />
 	</ItemGroup>
@@ -82,6 +83,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CurrenciesViews\CurrenciesArchiveView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CurrenciesViews\CurrenciyInfoView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\CustomViews\PageHeaderView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MainView.xaml">

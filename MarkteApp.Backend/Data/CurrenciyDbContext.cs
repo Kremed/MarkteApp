@@ -27,7 +27,6 @@ public partial class CurrenciyDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.HasDefaultSchema("MoatasemMaui");
 
         modelBuilder.Entity<Currency>(entity =>
         {

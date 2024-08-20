@@ -1,14 +1,32 @@
-﻿
-
-
-namespace Dashbord.Views.CurrenciesViews;
+﻿namespace Dashbord.Views.CurrenciesViews;
 
 
 public partial class CreateCurrencyView : ContentPage
 {
+    bool isUpdate = false;
+    public Currency _selectedItem { get; set; } = null!;
     public CreateCurrencyView()
     {
         InitializeComponent();
+    }
+
+    public CreateCurrencyView(Currency selectedItem)
+    {
+        InitializeComponent();
+
+        _selectedItem = selectedItem;
+
+        LblTitle.Text = "تعديل بيانات العملة";
+        LblDescrption.Text = $"من هنا يمكنك تعديل بيانات العملة {_selectedItem.Name} ليتمكن مستخدمي التطبيق من التعرف علي البيانات المطلوبة";
+
+        TxtName.Text = _selectedItem.Name;
+        TxtDiscrption.Text = _selectedItem.Description;
+        TxtCode.Text = _selectedItem.Code;
+        TxtImageUrl.Text = _selectedItem.ImageUrl;
+        ImgCurrencyUrl.Source = _selectedItem.ImageUrl;
+        SwActiveState.IsToggled = _selectedItem.IsActive;
+
+        isUpdate = true;
     }
 
     private async void TxtImageUrl_Unfocused(object sender, FocusEventArgs e)
@@ -58,7 +76,6 @@ public partial class CreateCurrencyView : ContentPage
     {
         try
         {
-            string? aaa = TxtCode.Text?.ToUpper().Trim();
 
             Currency currency = new Currency()
             {
@@ -82,7 +99,18 @@ public partial class CreateCurrencyView : ContentPage
 
             var client = new RestClient();
 
-            var request = new RestRequest("https://maui.ly/api/Currency/admin/createCurrency", Method.Post);
+            var request = new RestRequest();
+
+            if (isUpdate == true)
+            {
+                currency.Id = _selectedItem.Id;
+                request = new RestRequest("https://maui.ly/api/Currency/admin/updateCurrency", Method.Post);
+            }
+            else
+            {
+                request = new RestRequest("https://maui.ly/api/Currency/admin/createCurrency", Method.Post);
+            }
+
 
             var json = JsonConvert.SerializeObject(currency);
 
@@ -95,11 +123,23 @@ public partial class CreateCurrencyView : ContentPage
             if (response.IsSuccessful)
             {
                 TxtName.Text = "";
+
                 TxtDiscrption.Text = "";
+
                 TxtCode.Text = "";
-                TxtCode.Text = "";
+
+                TxtImageUrl.Text = "";
+
+                ImgCurrencyUrl.Source = null;
+
                 SwActiveState.IsToggled = true;
-                await DisplayAlert("عملية ناجحة", $"تمت أضافة العملة بنجاح : {currency.Name}", "موافق");
+
+                await DisplayAlert("عملية ناجحة", response.Content, "موافق");
+
+                if (isUpdate)
+                {
+                    await Navigation.PopModalAsync();
+                }
             }
             else
             {

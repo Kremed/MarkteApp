@@ -3,99 +3,115 @@
     x:Class="Dashbord.Views.CurrenciesViews.CurrenciesArchiveView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:models="clr-namespace:MarkteApp.Dashbord.Models"
+    xmlns:customViews="clr-namespace:Dashbord.Views.CustomViews"
+    xmlns:models="clr-namespace:MarketApp.Shered;assembly=MarketApp.Shered"
     Title="CurrenciesArchiveView"
     FlowDirection="RightToLeft">
 
-    <ScrollView VerticalOptions="FillAndExpand">
 
-        <VerticalStackLayout Margin="10" VerticalOptions="FillAndExpand">
+    <StackLayout
+        Margin="10"
+        Spacing="10"
+        VerticalOptions="FillAndExpand">
 
-            <CollectionView x:Name="CurrenciesCollectionView" VerticalOptions="FillAndExpand">
+        <customViews:PageHeaderView Grid.Row="0" />
+
+        <RefreshView x:Name="refreshView" Refreshing="refreshView_Refreshing">
+            <ScrollView VerticalOptions="FillAndExpand">
 
 
+                <CollectionView
+                    x:Name="CurrenciesCollectionView"
+                    Grid.Row="0"
+                    SelectionChanged="CurrenciesCollectionView_SelectionChanged"
+                    SelectionMode="Single"
+                    VerticalOptions="FillAndExpand">
 
-                <CollectionView.ItemsLayout>
-                    <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
 
-                    <!--<GridItemsLayout
+                        <!--<GridItemsLayout
                         HorizontalItemSpacing="10"
                         Orientation="Horizontal"
                         Span="2"
                         VerticalItemSpacing="10" />-->
-                </CollectionView.ItemsLayout>
+                    </CollectionView.ItemsLayout>
 
+                    <!--  شكل عرض البيانات : ItemTemplate  -->
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Currency">
 
+                            <Border Padding="10" BackgroundColor="White">
 
+                                <Grid
+                                    BackgroundColor="White"
+                                    ColumnDefinitions="40,*,auto"
+                                    ColumnSpacing="10">
 
+                                    <Image
+                                        Grid.Column="0"
+                                        Aspect="AspectFill"
+                                        HeightRequest="40"
+                                        Source="{Binding ImageUrl}"
+                                        WidthRequest="40" />
 
-                <!--  شكل عرض البيانات : ItemTemplate  -->
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Currency">
+                                    <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                        <Label
+                                            FontFamily="Bold"
+                                            FontSize="16"
+                                            Text="{Binding Name}" />
+                                        <Label Text="{Binding Description}" />
+                                    </StackLayout>
 
-                        <Border Padding="10">
-                            <Grid ColumnDefinitions="40,*,auto" ColumnSpacing="10">
-                                <Image
-                                    Grid.Column="0"
-                                    Aspect="AspectFill"
-                                    HeightRequest="40"
-                                    Source="{Binding ImageUrl}"
-                                    WidthRequest="40" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Padding="5"
+                                        BackgroundColor="Blue"
+                                        Text="{Binding Code}"
+                                        TextColor="White"
+                                        VerticalOptions="CenterAndExpand" />
 
-                                <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                </Grid>
+                            </Border>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                    <!--  عندما تكون القائمة لا تحتوي علي عناصر : EmptyView  -->
+                    <CollectionView.EmptyView>
+                        <ContentView>
+
+                            <Border Margin="10" HeightRequest="200">
+
+                                <StackLayout
+                                    Padding="10"
+                                    HorizontalOptions="CenterAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+
+                                    <ActivityIndicator IsRunning="True" IsVisible="True" />
                                     <Label
                                         FontFamily="Bold"
                                         FontSize="16"
-                                        Text="{Binding Name}" />
-                                    <Label Text="{Binding Description}" />
+                                        HorizontalTextAlignment="Center"
+                                        Text="لايوجد بيانات لعرضها الان" />
+                                    <Label
+                                        FontSize="16"
+                                        HorizontalTextAlignment="Center"
+                                        Text="الرجاء اعادة المحاولة مرة اخري" />
+                                    <Button Clicked="Button_Clicked" Text="عودة الي الرئيسية" />
                                 </StackLayout>
 
-                                <Label
-                                    Grid.Column="2"
-                                    Padding="5"
-                                    BackgroundColor="Blue"
-                                    Text="{Binding Code}"
-                                    TextColor="White"
-                                    VerticalOptions="CenterAndExpand" />
-                            </Grid>
-                        </Border>
+                            </Border>
 
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                        </ContentView>
+                    </CollectionView.EmptyView>
 
-                <!--  عندما تكون القائمة لا تحتوي علي عناصر : EmptyView  -->
-                <CollectionView.EmptyView>
-                    <ContentView>
+                </CollectionView>
 
-                        <Border Margin="10" HeightRequest="200">
+            </ScrollView>
+        </RefreshView>
 
-                            <StackLayout
-                                Padding="10"
-                                HorizontalOptions="CenterAndExpand"
-                                VerticalOptions="CenterAndExpand">
-                                <Label
-                                    FontFamily="Bold"
-                                    FontSize="16"
-                                    HorizontalTextAlignment="Center"
-                                    Text="لايوجد بيانات لعرضها الان" />
-                                <Label
-                                    FontSize="16"
-                                    HorizontalTextAlignment="Center"
-                                    Text="الرجاء اعادة المحاولة مرة اخري" />
-                                <Button Clicked="Button_Clicked" Text="عودة الي الرئيسية" />
-                            </StackLayout>
-
-                        </Border>
-
-                    </ContentView>
-                </CollectionView.EmptyView>
-
-            </CollectionView>
-
-        </VerticalStackLayout>
-
-    </ScrollView>
-
+    </StackLayout>
 </ContentPage>
 
 

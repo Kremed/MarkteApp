@@ -3,8 +3,11 @@
 
 public partial class CreateCurrencyView : ContentPage
 {
+
+
     bool isUpdate = false;
     public Currency _selectedItem { get; set; } = null!;
+
     public CreateCurrencyView()
     {
         InitializeComponent();
@@ -14,19 +17,30 @@ public partial class CreateCurrencyView : ContentPage
     {
         InitializeComponent();
 
-        _selectedItem = selectedItem;
+        try
+        {
+            _selectedItem = selectedItem;
 
-        LblTitle.Text = "تعديل بيانات العملة";
-        LblDescrption.Text = $"من هنا يمكنك تعديل بيانات العملة {_selectedItem.Name} ليتمكن مستخدمي التطبيق من التعرف علي البيانات المطلوبة";
+            LblTitle.Text = "تعديل بيانات العملة";
+            LblDescrption.Text = $"من هنا يمكنك تعديل بيانات العملة {_selectedItem.Name} ليتمكن مستخدمي التطبيق من التعرف علي البيانات المطلوبة";
 
-        TxtName.Text = _selectedItem.Name;
-        TxtDiscrption.Text = _selectedItem.Description;
-        TxtCode.Text = _selectedItem.Code;
-        TxtImageUrl.Text = _selectedItem.ImageUrl;
-        ImgCurrencyUrl.Source = _selectedItem.ImageUrl;
-        SwActiveState.IsToggled = _selectedItem.IsActive;
+            TxtName.Text = _selectedItem.Name;
+            TxtDiscrption.Text = _selectedItem.Description;
+            TxtCode.Text = _selectedItem.Code.Trim();
+            TxtImageUrl.Text = _selectedItem.ImageUrl;
+            ImgCurrencyUrl.Source = _selectedItem.ImageUrl;
+            SwActiveState.IsToggled = _selectedItem.IsActive;
 
-        isUpdate = true;
+            isUpdate = true;
+        }
+        catch (Exception)
+        {
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Navigation.PopModalAsync();
+            });
+
+        }
     }
 
     private async void TxtImageUrl_Unfocused(object sender, FocusEventArgs e)
@@ -79,6 +93,7 @@ public partial class CreateCurrencyView : ContentPage
 
             Currency currency = new Currency()
             {
+                
                 Name = TxtName.Text.Trim(),
                 Description = TxtDiscrption.Text.Trim(),
                 Code = TxtCode.Text.ToUpper().Trim(),

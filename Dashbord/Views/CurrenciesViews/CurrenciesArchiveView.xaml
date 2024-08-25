@@ -16,15 +16,21 @@
 
         <customViews:PageHeaderView Grid.Row="0" />
 
-        <RefreshView x:Name="refreshView" Refreshing="refreshView_Refreshing">
+        <RefreshView
+            x:Name="refreshView"
+            BackgroundColor="Blue"
+            RefreshColor="White"
+            Refreshing="refreshView_Refreshing">
+
+
             <ScrollView VerticalOptions="FillAndExpand">
-
-
+                <!--
+                    SelectionChanged="CurrenciesCollectionView_SelectionChanged"
+                    SelectionMode="Single"
+                -->
                 <CollectionView
                     x:Name="CurrenciesCollectionView"
                     Grid.Row="0"
-                    SelectionChanged="CurrenciesCollectionView_SelectionChanged"
-                    SelectionMode="Single"
                     VerticalOptions="FillAndExpand">
 
                     <CollectionView.ItemsLayout>
@@ -41,39 +47,91 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Currency">
 
-                            <Border Padding="10" BackgroundColor="White">
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
 
-                                <Grid
-                                    BackgroundColor="White"
-                                    ColumnDefinitions="40,*,auto"
-                                    ColumnSpacing="10">
+                                        <SwipeItem
+                                            x:Name="SwipeDelete"
+                                            BackgroundColor="Red"
+                                            Clicked="SwipeDelete_Clicked"
+                                            Text="Delete" />
 
-                                    <Image
-                                        Grid.Column="0"
-                                        Aspect="AspectFill"
-                                        HeightRequest="40"
-                                        Source="{Binding ImageUrl}"
-                                        WidthRequest="40" />
+                                        <SwipeItem
+                                            x:Name="SwipEdit"
+                                            BackgroundColor="Orange"
+                                            Clicked="SwipEdit_Clicked"
+                                            Text="Edit" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
 
-                                    <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                <!--<SwipeView.LeftItems>
+
+                                    <SwipeItem
+                                        BackgroundColor="Red"
+                                        Clicked="SwipeDelete_Clicked"
+                                        Text="Delete" />
+
+                                </SwipeView.LeftItems>-->
+
+                                <Border Padding="10" BackgroundColor="White">
+                                    <Grid
+                                        BackgroundColor="White"
+                                        ColumnDefinitions="40,*,auto,auto"
+                                        ColumnSpacing="10">
+
+                                        <Image
+                                            Grid.Column="0"
+                                            Aspect="AspectFill"
+                                            HeightRequest="40"
+                                            Source="{Binding ImageUrl}"
+                                            WidthRequest="40" />
+
+                                        <StackLayout Grid.Column="1" VerticalOptions="CenterAndExpand">
+                                            <Label
+                                                FontFamily="Bold"
+                                                FontSize="16"
+                                                Text="{Binding Name}" />
+                                            <Label Text="{Binding Description}" />
+                                        </StackLayout>
+
                                         <Label
-                                            FontFamily="Bold"
-                                            FontSize="16"
-                                            Text="{Binding Name}" />
-                                        <Label Text="{Binding Description}" />
-                                    </StackLayout>
+                                            Grid.Column="2"
+                                            Padding="5"
+                                            BackgroundColor="Blue"
+                                            Text="{Binding Code}"
+                                            TextColor="White"
+                                            VerticalOptions="CenterAndExpand" />
 
-                                    <Label
-                                        Grid.Column="2"
-                                        Padding="5"
-                                        BackgroundColor="Blue"
-                                        Text="{Binding Code}"
-                                        TextColor="White"
-                                        VerticalOptions="CenterAndExpand" />
+                                        <Button
+                                            Grid.Column="3"
+                                            Padding="0"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{StaticResource Primary}"
+                                            BorderWidth="1"
+                                            CornerRadius="0"
+                                            HeightRequest="33"
+                                            Text="!"
+                                            TextColor="{StaticResource Primary}"
+                                            WidthRequest="50">
+                                            <Button.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    CommandParameter="{Binding .}"
+                                                    NumberOfTapsRequired="1"
+                                                    Tapped="TapGestureRecognizer_Tapped" />
+                                            </Button.GestureRecognizers>
+                                        </Button>
 
-                                </Grid>
-                            </Border>
+                                    </Grid>
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            CommandParameter="{Binding .}"
+                                            NumberOfTapsRequired="1"
+                                            Tapped="TapGestureRecognizer_Tapped" />
+                                    </Border.GestureRecognizers>
+                                </Border>
 
+                            </SwipeView>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
 
@@ -107,8 +165,8 @@
                     </CollectionView.EmptyView>
 
                 </CollectionView>
-
             </ScrollView>
+
         </RefreshView>
 
     </StackLayout>

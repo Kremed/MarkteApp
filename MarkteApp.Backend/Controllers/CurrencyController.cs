@@ -23,11 +23,22 @@ namespace MarkteApp.Backend.Controllers
         [HttpGet("admin/getCurrencies")]
         public async Task<IActionResult> getCurrencies()
         {
+
+            //var curencieyPricesList = await db.CurrencyPrices
+            //                               .Where(p => p.CurrencyId == 1)
+            //                               .OrderByDescending(p => p.Id)
+            //                               .Skip(2)
+            //                               .Take(3)
+            //                               .ToListAsync();
+
+
             //LINQ Method syntax:
             var currenciesList = await db.Currencies
                                 .Where(c => c.IsActive == true)
                                 .ToListAsync();
-          
+
+            //var Prices = await db.CurrencyPrices.ToListAsync();
+
             //LINQ Query syntax:
             //var currenciesListQ = await (from Currency in db.Currencies
             //                             where Currency.IsActive == true
@@ -45,7 +56,7 @@ namespace MarkteApp.Backend.Controllers
         [HttpPost("admin/createCurrency")]
         public async Task<IActionResult> createCurrency([FromBody] Currency newCurrency)
         {
-           
+
             if (!ModelState.IsValid)
             {
                 //return ValidationProblem("الرجاء التحقق من قائمة الاخطاء, يوجد خطاء في البيانات");
@@ -57,7 +68,7 @@ namespace MarkteApp.Backend.Controllers
                 return BadRequest(firstError);
             }
 
-         
+
 
 
 
@@ -168,6 +179,8 @@ namespace MarkteApp.Backend.Controllers
             return Ok($"تمت عملية تعديل البيانات الخاصة بعملة: {CurrencyFromDataBase.Name} بنجاح.");
         }
 
+
+
         //نقطة النهاية الخاصة بحذف سجل سعر عملة من قاعدة البيانات
         [HttpPost("admin/deleteCurrencyPrice")]
         public async Task<IActionResult> deleteCurrencyPrice(int priceID)
@@ -260,11 +273,19 @@ namespace MarkteApp.Backend.Controllers
             }
 
             await db.CurrencyPrices.AddAsync(newPrice);
+
             await db.SaveChangesAsync();
 
+            var curencieyPricesList = await db.CurrencyPrices
+                                        .Where(p => p.CurrencyId == currencyID)
+                                        .OrderByDescending(p => p.Id)
+                                        .Take(10)
+                                        .ToListAsync();
 
-            return Ok($"تمت عملية تعديل البيانات الخاصة بعملة: {CurrencyFromDataBase.Name} بنجاح.");
+            return Ok(curencieyPricesList);
         }
+
+
 
     }
 }

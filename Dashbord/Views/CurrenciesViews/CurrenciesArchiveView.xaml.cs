@@ -1,21 +1,23 @@
-﻿
-
-
-namespace Dashbord.Views.CurrenciesViews;
+﻿namespace Dashbord.Views.CurrenciesViews;
 
 public partial class CurrenciesArchiveView : ContentPage
 {
+    //Constractor => من هنا نقطة بداية الانشاء لاي كلاس
+    // يمكن أنشاء أكثر من Constractor لنفس الكلاس
     public CurrenciesArchiveView()
     {
         InitializeComponent();
 
-        MainThread.BeginInvokeOnMainThread(async () =>
-        {
-            await GetCurrencies();
-        });
+        //MainThread.BeginInvokeOnMainThread(async () =>
+        //{
+        //    await GetCurrencies();
+        //});
     }
-
-    //OnAppearing
+    protected async override void OnAppearing()
+    {
+        await GetCurrencies();
+        base.OnAppearing();
+    }
 
     public async Task GetCurrencies()
     {
@@ -61,12 +63,10 @@ public partial class CurrenciesArchiveView : ContentPage
     {
         try
         {
+            //var selectedItem = e.CurrentSelection.FirstOrDefault() as Currency;
             if (e.CurrentSelection.FirstOrDefault() is Currency selectedItem)
             {
-                int selectedId = selectedItem.Id;
-                await Navigation.PushModalAsync(new CurrenciyInfoView(selectedItem));
-
-
+                await Navigation.PushModalAsync(new CurrenciyInfoView(selectedItem, selectedItem.Id));
             }
         }
         catch (Exception)
@@ -84,5 +84,61 @@ public partial class CurrenciesArchiveView : ContentPage
         {
             refreshView.IsRefreshing = false;
         }
+    }
+
+    private async void SwipEdit_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            //SwipeView Static Code
+            var swipeItem = sender as SwipeItem;
+
+            var selectedItem = swipeItem?.BindingContext as Currency;
+
+            if (selectedItem is not null)
+            {
+                await Navigation.PushModalAsync(new CurrenciyInfoView(selectedItem, selectedItem.Id));
+            }
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    private async void SwipeDelete_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            //SwipeView Static Code
+            var swipeItem = sender as SwipeItem;
+            var item = swipeItem?.BindingContext as Currency;
+
+            if (item != null)
+            {
+                await DisplayAlert("Deleted", $"{item.Name} has been deleted.", "OK");
+            }
+        }
+        catch
+        {
+        }
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        try
+        {
+            if (e.Parameter is Currency selectedItem)
+            {
+                await Navigation.PushModalAsync(new CurrenciyInfoView(selectedItem, selectedItem.Id));
+            }
+        }
+        catch (Exception)
+        {
+        }
+    }
+
+    private void TapGestureRecognizer_Tapped_1(object sender, TappedEventArgs e)
+    {
+
     }
 }

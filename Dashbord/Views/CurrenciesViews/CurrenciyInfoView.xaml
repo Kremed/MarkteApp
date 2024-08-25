@@ -4,27 +4,18 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+    xmlns:customViews="clr-namespace:Dashbord.Views.CustomViews"
+    xmlns:models="clr-namespace:MarketApp.Shered;assembly=MarketApp.Shered"
     Title="CurrenciyInfoView"
     android:TabbedPage.ToolbarPlacement="Bottom"
     BarBackgroundColor="LightGray"
     BarTextColor="Black"
     FlowDirection="RightToLeft">
 
-    <ContentPage Title="Tab 1" IconImageSource="add.svg">
-        <StackLayout Padding="20">
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Tab 1!"
-                VerticalOptions="Center" />
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Welcome to Tab 1!"
-                VerticalOptions="Center" />
-        </StackLayout>
-    </ContentPage>
-
     <ContentPage Title="بيانات العملة" IconImageSource="back_arrow.png">
         <VerticalStackLayout Margin="20,10" VerticalOptions="FillAndExpand">
+            <customViews:PageHeaderView Grid.Row="0" />
+
             <!--  Image  -->
             <Border
                 Margin="0,20"
@@ -152,5 +143,76 @@
 
         </VerticalStackLayout>
     </ContentPage>
+
+    <ContentPage Title="Tab 1" IconImageSource="add.svg">
+        <VerticalStackLayout Margin="20,10" VerticalOptions="FillAndExpand">
+            <customViews:PageHeaderView Grid.Row="0" />
+
+            <Grid
+                Margin="0,20"
+                ColumnDefinitions="auto,*,auto"
+                ColumnSpacing="10"
+                HorizontalOptions="FillAndExpand">
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="أسم العملة"
+                    VerticalOptions="Center" />
+
+                <Entry
+                    x:Name="TxtCurrentPrice"
+                    Grid.Column="1"
+                    FontFamily="Bold"
+                    FontSize="26"
+                    HorizontalTextAlignment="Center"
+                    Keyboard="Numeric" />
+
+                <Button
+                    x:Name="BtnSaveNewPrice"
+                    Grid.Column="2"
+                    Padding="0"
+                    Clicked="BtnSaveNewPrice_Clicked"
+                    CornerRadius="4"
+                    HeightRequest="40"
+                    Text="حفظ"
+                    WidthRequest="80" />
+            </Grid>
+
+            <CollectionView
+                x:Name="CollectionViewPrices"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout ItemSpacing="5" Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:CurrencyPrice">
+                        <Border Padding="10">
+
+                            <Grid ColumnDefinitions="*,50,*">
+                                <!--<Label Text="{Binding Id}" />-->
+                                <Label Grid.Column="0" Text="{Binding RecordTime}" />
+                                <Label
+                                    Grid.Column="2"
+                                    Padding="5"
+                                    BackgroundColor="GreenYellow"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Ratio}"
+                                    WidthRequest="50" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Price}" />
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ContentPage>
+
 
 </TabbedPage>

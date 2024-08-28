@@ -20,10 +20,10 @@ public partial class MarketingAd
     public string Description { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
-    public DateTime FromDate { get; set; }
+    public DateTime FromDate { get; set; } = DateTime.Now;
 
     [Column(TypeName = "datetime")]
-    public DateTime ToDate { get; set; }
+    public DateTime ToDate { get; set; } = DateTime.Now.AddDays(30);
 
     public bool IsActive { get; set; }
 

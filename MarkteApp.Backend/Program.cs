@@ -35,14 +35,8 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+app.UseStaticFiles(); // Enables serving static files
 
-//if (app.Environment.IsDevelopment()) 
-//    //Local = IsDevelopment  
-//    //Libyan Spider = Production
-//{
-//    app.UseSwagger();
-//    app.UseSwaggerUI();
-//}
 app.UseSwagger();
 
 app.UseSwaggerUI();

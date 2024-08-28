@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Dashbord.Views.MarktingViews.MarktingArchiveView"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="MarktingArchiveView"
+    FlowDirection="RightToLeft">
+    <VerticalStackLayout>
+        <Grid
+            Margin="10"
+            ColumnDefinitions="*,*"
+            ColumnSpacing="10">
+            <Button
+                x:Name="BtnGoToCreateView"
+                Grid.Column="0"
+                Clicked="BtnGoToCreateView_Clicked"
+                CornerRadius="0"
+                FontFamily="Bold"
+                Text="أضافة + " />
+            <Button
+                Grid.Column="1"
+                CornerRadius="0"
+                FontFamily="Bold"
+                Text="تحديث" />
+        </Grid>
+    </VerticalStackLayout>
+</ContentPage>

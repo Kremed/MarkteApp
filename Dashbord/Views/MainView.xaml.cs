@@ -1,4 +1,6 @@
 ﻿
+using Dashbord.Views.MarktingViews;
+
 namespace Dashbord.Views;
 
 public partial class MainView : ContentPage
@@ -30,6 +32,18 @@ public partial class MainView : ContentPage
         try
         {
             await Navigation.PushModalAsync(new CurrenciesArchiveView());
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Exception !!", $":تعرض التطبيق لخطاء ما, الرجاء اعادة المحاولة {Environment.NewLine} {ex.Message}", "موافق");
+        }
+    }
+
+    private async void BrdAdsArchive_Tapped(object sender, TappedEventArgs e)
+    {
+        try
+        {
+            await Navigation.PushModalAsync(new MarktingArchiveView());
         }
         catch (Exception ex)
         {

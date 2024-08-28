@@ -64,6 +64,7 @@
 	  <None Remove="Resources\Fonts\Zain-Light.ttf" />
 	  <None Remove="Resources\Fonts\Zain-Regular.ttf" />
 	  <None Remove="Resources\Images\add.svg" />
+	  <None Remove="Resources\Images\ads_icon.png" />
 	  <None Remove="Resources\Images\archive_currency.png" />
 	  <None Remove="Resources\Images\back_arrow.png" />
 	  <None Remove="Resources\Images\currency_archive.png" />
@@ -94,10 +95,12 @@
 	  <MauiXaml Update="Views\MainView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Views\MarktingViews\" />
+	  <MauiXaml Update="Views\MarktingViews\CreateAdView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MarktingViews\MarktingArchiveView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>

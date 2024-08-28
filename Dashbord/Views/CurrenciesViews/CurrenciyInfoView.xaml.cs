@@ -52,7 +52,7 @@ public partial class CurrenciyInfoView : TabbedPage
             //var request = new RestRequest($"https://maui.ly/api/Currency/admin/deleteCurrency?currencyID={localSelectedCurrency.Id}", Method.Post);
 
             var request = new RestRequest($"https://maui.ly/api/Currency/admin/deleteCurrency", Method.Post);
-            request.AddQueryParameter("currencyID", localSelectedCurrency.Id, true);
+            request.AddQueryParameter("currencyID", localSelectedCurrency.Id);
 
 
             var responce = await client.ExecuteAsync(request);

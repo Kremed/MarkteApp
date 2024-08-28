@@ -15,7 +15,6 @@ public partial class CurrenciyDbContext : DbContext
         : base(options)
     {
     }
-
     public virtual DbSet<Currency> Currencies { get; set; }
 
     public virtual DbSet<CurrencyPrice> CurrencyPrices { get; set; }

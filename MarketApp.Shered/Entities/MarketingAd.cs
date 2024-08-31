@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 
 namespace MarketApp.Shered;
@@ -28,4 +29,12 @@ public partial class MarketingAd
     public bool IsActive { get; set; }
 
     public string? Url { get; set; }
+
+    [JsonIgnore]
+    [NotMapped]
+    public string? StringActiveSatus { get; set; }
+
+    [JsonIgnore]
+    [NotMapped]
+    public string? colorCode { get; set; }
 }

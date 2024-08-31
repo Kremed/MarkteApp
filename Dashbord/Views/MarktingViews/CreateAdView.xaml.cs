@@ -20,6 +20,14 @@ public partial class CreateAdView : ContentPage
             if (result != null)
             {
                 imageFile = result;
+                ImgAdCover.Source = result.FullPath;
+                ImgAdCover.IsVisible = true;
+            }
+            else
+            {
+                imageFile = null;
+                ImgAdCover.Source = "";
+                ImgAdCover.IsVisible = false;
             }
         }
         catch (Exception ex)
@@ -63,6 +71,7 @@ public partial class CreateAdView : ContentPage
 
             var request = new RestRequest("https://maui.ly/api/Markting/admin/createAd", Method.Post);
 
+            request.AddParameter("StringActiveSatus", "AnyThing");
             request.AddParameter("Title", TxtTitle.Text);
             request.AddParameter("Description", TxtDescription.Text);
             request.AddParameter("FromDate", Convert.ToDateTime(DpFromDate.Date).ToString("yyyy-MM-ddTHH:mm:ss"));
@@ -77,14 +86,16 @@ public partial class CreateAdView : ContentPage
 
             if (responce.IsSuccessStatusCode)
             {
-
+                await Navigation.PopModalAsync();
+            }
+            else
+            {
+                await DisplayAlert("Error API Call ",responce.Content!.ToString(),"OK");
             }
 
         }
         catch (Exception)
         {
-
-            throw;
         }
     }
 }

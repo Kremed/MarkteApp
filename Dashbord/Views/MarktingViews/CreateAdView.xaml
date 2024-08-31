@@ -3,121 +3,133 @@
     x:Class="Dashbord.Views.MarktingViews.CreateAdView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customViews="clr-namespace:Dashbord.Views.CustomViews"
     Title="CreateAdView"
     FlowDirection="RightToLeft">
-    <VerticalStackLayout Margin="10">
-        <Grid
-            Margin="10"
-            ColumnDefinitions="auto,*"
-            ColumnSpacing="10"
-            HorizontalOptions="FillAndExpand"
-            RowDefinitions="auto,auto,auto,auto,auto,auto,auto"
-            RowSpacing="10"
-            VerticalOptions="FillAndExpand">
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
-            <!--  Row 0  -->
-            <Label
-                Grid.Row="0"
-                Grid.Column="0"
-                Padding="10,5"
-                BackgroundColor="LightGray"
-                Text="عنوان الأعلان:"
-                VerticalOptions="Center" />
-            <Entry
-                x:Name="TxtTitle"
-                Grid.Row="0"
-                Grid.Column="1"
-                Placeholder="الرجاء كتابة عنوان الاعلان المختصر هنا"
-                ReturnType="Next"
-                Text="" />
+        <VerticalStackLayout Margin="10">
+            <customViews:PageHeaderView  />
+            <Image
+                x:Name="ImgAdCover"
+                Aspect="AspectFill"
+                HeightRequest="150"
+                
+                HorizontalOptions="FillAndExpand"
+                IsVisible="False" />
+            <Grid
+                Margin="10"
+                ColumnDefinitions="auto,*"
+                ColumnSpacing="10"
+                HorizontalOptions="FillAndExpand"
+                RowDefinitions="auto,auto,auto,auto,auto,auto,auto"
+                RowSpacing="10"
+                VerticalOptions="FillAndExpand">
 
-            <!--  Row 1  -->
-            <Label
-                Grid.Row="1"
-                Grid.Column="0"
-                Padding="10,5"
-                BackgroundColor="LightGray"
-                Text="وصف الأعلان:"
-                VerticalOptions="Center" />
-            <Entry
-                x:Name="TxtDescription"
-                Grid.Row="1"
-                Grid.Column="1"
-                Placeholder="الرجاء كتابة وصف  الاعلان هنا"
-                ReturnType="Next"
-                Text="" />
+                <!--  Row 0  -->
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="عنوان الأعلان:"
+                    VerticalOptions="Center" />
+                <Entry
+                    x:Name="TxtTitle"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Placeholder="الرجاء كتابة عنوان الاعلان المختصر هنا"
+                    ReturnType="Next"
+                    Text="" />
 
-            <!--  Row 2  -->
-            <Label
-                Grid.Row="2"
-                Grid.Column="0"
-                Padding="10,5"
-                BackgroundColor="LightGray"
-                Text="تـاريخ البداية:"
-                VerticalOptions="Center" />
-            <DatePicker
-                x:Name="DpFromDate"
-                Grid.Row="2"
-                Grid.Column="1" />
+                <!--  Row 1  -->
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="وصف الأعلان:"
+                    VerticalOptions="Center" />
+                <Entry
+                    x:Name="TxtDescription"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Placeholder="الرجاء كتابة وصف  الاعلان هنا"
+                    ReturnType="Next"
+                    Text="" />
 
-            <!--  Row 3  -->
-            <Label
-                Grid.Row="3"
-                Grid.Column="0"
-                Padding="10,5"
-                BackgroundColor="LightGray"
-                Text="تـاريخ النهاية:"
-                VerticalOptions="Center" />
-            <DatePicker
-                x:Name="DpToDate"
-                Grid.Row="3"
-                Grid.Column="1" />
+                <!--  Row 2  -->
+                <Label
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="تـاريخ البداية:"
+                    VerticalOptions="Center" />
+                <DatePicker
+                    x:Name="DpFromDate"
+                    Grid.Row="2"
+                    Grid.Column="1" />
 
-            <!--  Row 4  -->
-            <Label
-                Grid.Row="4"
-                Grid.Column="0"
-                Padding="10,5"
-                BackgroundColor="LightGray"
-                Text="رابط موقع الاعلان:"
-                VerticalOptions="Center" />
-            <Entry
-                x:Name="TxtUrl"
-                Grid.Row="4"
-                Grid.Column="1"
-                Placeholder="https://facebook.com/29123jf9joif"
-                ReturnType="Next"
-                Text="" />
+                <!--  Row 3  -->
+                <Label
+                    Grid.Row="3"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="تـاريخ النهاية:"
+                    VerticalOptions="Center" />
+                <DatePicker
+                    x:Name="DpToDate"
+                    Grid.Row="3"
+                    Grid.Column="1" />
 
-            <!--  Row 5  -->
-            <Label
-                Grid.Row="5"
-                Grid.Column="0"
-                Padding="10,5"
-                BackgroundColor="LightGray"
-                Text="اختر ملف الصورة:"
-                VerticalOptions="Center" />
-            <Button
-                x:Name="BtnUplodImageFile"
-                Grid.Row="5"
-                Grid.Column="1"
-                Padding="0"
-                Clicked="BtnUplodImageFile_Clicked"
-                CornerRadius="0"
-                HeightRequest="35"
-                Text="أضغط هنا لرفع الملف" />
+                <!--  Row 4  -->
+                <Label
+                    Grid.Row="4"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="رابط موقع الاعلان:"
+                    VerticalOptions="Center" />
+                <Entry
+                    x:Name="TxtUrl"
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Placeholder="https://facebook.com/29123jf9joif"
+                    ReturnType="Next"
+                    Text="" />
 
-            <!--  Row 6  -->
-            <Button
-                x:Name="BtnCallApi"
-                Grid.Row="6"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="0,40"
-                Clicked="BtnCallApi_Clicked"
-                CornerRadius="0"
-                Text="أنشاء وحفظ الاعلان" />
+                <!--  Row 5  -->
+                <Label
+                    Grid.Row="5"
+                    Grid.Column="0"
+                    Padding="10,5"
+                    BackgroundColor="LightGray"
+                    Text="اختر ملف الصورة:"
+                    VerticalOptions="Center" />
+                <Button
+                    x:Name="BtnUplodImageFile"
+                    Grid.Row="5"
+                    Grid.Column="1"
+                    Padding="0"
+                    Clicked="BtnUplodImageFile_Clicked"
+                    CornerRadius="0"
+                    HeightRequest="35"
+                    Text="أضغط هنا لرفع الملف" />
 
-        </Grid>
-    </VerticalStackLayout>
+                <!--  Row 6  -->
+                <Button
+                    x:Name="BtnCallApi"
+                    Grid.Row="6"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Margin="0,40"
+                    Clicked="BtnCallApi_Clicked"
+                    CornerRadius="0"
+                    Text="أنشاء وحفظ الاعلان" />
+
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

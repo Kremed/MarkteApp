@@ -84,8 +84,15 @@ namespace MarkteApp.Backend.Controllers
         [HttpGet("admin/getAds")]
         public async Task<IActionResult> getAds()
         {
-            var ads = await db.MarketingAds.ToListAsync();
-            return Ok(ads);
+            try
+            {
+                var ads = await db.MarketingAds.ToListAsync();
+                return Ok(ads);
+            }
+            catch (Exception ex)
+            {
+                return Problem(ex.Message + Environment.NewLine + ex.InnerException);
+            }
         }
         [HttpPost("admin/deactivateAd")]
         public async Task<IActionResult> deactivateAd(int id)

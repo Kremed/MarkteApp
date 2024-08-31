@@ -3,25 +3,86 @@
     x:Class="Dashbord.Views.MarktingViews.MarktingArchiveView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:MarketApp.Shered;assembly=MarketApp.Shered"
     Title="MarktingArchiveView"
     FlowDirection="RightToLeft">
-    <VerticalStackLayout>
-        <Grid
-            Margin="10"
-            ColumnDefinitions="*,*"
-            ColumnSpacing="10">
-            <Button
-                x:Name="BtnGoToCreateView"
-                Grid.Column="0"
-                Clicked="BtnGoToCreateView_Clicked"
-                CornerRadius="0"
-                FontFamily="Bold"
-                Text="أضافة + " />
-            <Button
-                Grid.Column="1"
-                CornerRadius="0"
-                FontFamily="Bold"
-                Text="تحديث" />
-        </Grid>
-    </VerticalStackLayout>
+
+    <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <VerticalStackLayout VerticalOptions="FillAndExpand">
+
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+
+                <Grid
+                    Margin="10"
+                    ColumnDefinitions="*,*"
+                    ColumnSpacing="10">
+                    <Button
+                        x:Name="BtnGoToCreateView"
+                        Grid.Column="0"
+                        Clicked="BtnGoToCreateView_Clicked"
+                        CornerRadius="0"
+                        FontFamily="Bold"
+                        Text="أضافة + " />
+                    <Button
+                        Grid.Column="1"
+                        CornerRadius="0"
+                        FontFamily="Bold"
+                        Text="تحديث" />
+                </Grid>
+
+                <CollectionView
+                    x:Name="AdsCollectionView"
+                    Margin="10"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="FillAndExpand">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:MarketingAd">
+                            <Grid ColumnDefinitions="*,2*" ColumnSpacing="10">
+                                <Image
+                                    Grid.Column="0"
+                                    Aspect="AspectFill"
+                                    HeightRequest="80"
+                                    Source="{Binding CoverImage}" />
+
+                                <Border
+                                    Grid.Column="1"
+                                    Padding="10"
+                                    StrokeShape="RoundRectangle 5">
+                                    <Grid ColumnDefinitions="*,auto" ColumnSpacing="10">
+                                        <StackLayout VerticalOptions="CenterAndExpand">
+                                            <Label Text="{Binding StringActiveSatus}" TextColor="{Binding colorCode}" />
+                                            <Label Text="{Binding Title}" />
+                                            <Label FontSize="8" Text="{Binding Description}" />
+                                        </StackLayout>
+
+                                        <Button
+                                            x:Name="BtnDelete"
+                                            Grid.Column="1"
+                                            BackgroundColor="Transparent"
+                                            BorderColor="{Binding colorCode}"
+                                            BorderWidth="1"
+                                            HeightRequest="40"
+                                            Text="X"
+                                            TextColor="{Binding colorCode}">
+                                            <Button.GestureRecognizers>
+                                                <TapGestureRecognizer
+                                                    CommandParameter="{Binding Id}"
+                                                    NumberOfTapsRequired="3"
+                                                    Tapped="TapGestureRecognizer_Tapped" />
+                                            </Button.GestureRecognizers>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

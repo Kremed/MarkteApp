@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Net.Http.Json;
 using System.Text.Json.Serialization;
 
 namespace MarketApp.Shered.Dtos
@@ -15,4 +16,8 @@ namespace MarketApp.Shered.Dtos
         //public string? colorCode { get; set; }
         //public IFormFile file { get; set; } = null!; //ملف الصورة الذي نحتاجه لرفعه لخادم البيانات
     }
+
+   
 }
+
+

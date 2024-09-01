@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="EndUser.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:modls="clr-namespace:MarketApp.Shered;assembly=MarketApp.Shered"
+    FlowDirection="RightToLeft">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20,0" Spacing="20">
+
+            <CarouselView x:Name="AdsCarouselView" IsSwipeEnabled="False">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="modls:MarketingAd">
+                        <Border
+                            BackgroundColor="Gray"
+                            HeightRequest="150"
+                            HorizontalOptions="FillAndExpand"
+                            StrokeShape="RoundRectangle 10">
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                HeightRequest="150"
+                                RowDefinitions="*,*">
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Aspect="AspectFill"
+                                    Source="{Binding CoverImage}" />
+
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Padding="10">
+
+                                    <Label FontFamily="Bold" Text="{Binding Title}" />
+                                    <Label FontFamily="Bold" Text="{Binding Description}" />
+                                </StackLayout>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

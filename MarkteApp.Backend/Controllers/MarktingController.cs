@@ -3,6 +3,7 @@ using MarketApp.Shered;
 using MarketApp.Shered.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.NetworkInformation;
 
 namespace MarkteApp.Backend.Controllers
 {
@@ -16,7 +17,7 @@ namespace MarkteApp.Backend.Controllers
         {
             try
             {
-               
+
                 //==========================================================================
                 // (01) Save The image File To wwwroot/uploads <=> حفظ ملف الصورة في الملفات التابتة بالمشروع
                 //==========================================================================
@@ -36,8 +37,9 @@ namespace MarkteApp.Backend.Controllers
                 }
 
                 //أنشاء أسم عشوائي للملف ليتم حفظه بــأسم جديد
-                
-                var fileName = Path.GetRandomFileName() + Path.GetExtension(imageFile.FileName);
+
+                string GuidRandomFileName = Guid.NewGuid().ToString();
+                var fileName = GuidRandomFileName.Replace("-", "") + Path.GetExtension(imageFile.FileName);
                 var filePath = Path.Combine(uploadsFolder, fileName);
 
                 // Save The File To The Path  =>
@@ -84,6 +86,10 @@ namespace MarkteApp.Backend.Controllers
         [HttpGet("admin/getAds")]
         public async Task<IActionResult> getAds()
         {
+
+
+
+
             try
             {
                 var ads = await db.MarketingAds.ToListAsync();
@@ -94,6 +100,7 @@ namespace MarkteApp.Backend.Controllers
                 return Problem(ex.Message + Environment.NewLine + ex.InnerException);
             }
         }
+
         [HttpPost("admin/deactivateAd")]
         public async Task<IActionResult> deactivateAd(int id)
         {

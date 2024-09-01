@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashbord", "Dashbord\Dashbo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarketApp.Shered", "MarketApp.Shered\MarketApp.Shered.csproj", "{84BC7706-7039-4A48-AD37-3C70A1847A23}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndUser", "EndUser\EndUser.csproj", "{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,12 @@ Global
 		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84BC7706-7039-4A48-AD37-3C70A1847A23}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC206D82-6FDE-4983-ADA4-ECE83F4DB395}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

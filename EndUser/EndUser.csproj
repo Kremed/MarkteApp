@@ -14,17 +14,17 @@
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
 
 		<OutputType>Exe</OutputType>
-		<RootNamespace>Dashbord</RootNamespace>
+		<RootNamespace>EndUser</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>Dashbord</ApplicationTitle>
+		<ApplicationTitle>EndUser</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.dashbord</ApplicationId>
+		<ApplicationId>com.companyname.enduser</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -63,44 +63,14 @@
 	  <None Remove="Resources\Fonts\Zain-ExtraLight.ttf" />
 	  <None Remove="Resources\Fonts\Zain-Light.ttf" />
 	  <None Remove="Resources\Fonts\Zain-Regular.ttf" />
-	  <None Remove="Resources\Images\add.svg" />
-	  <None Remove="Resources\Images\ads_icon.png" />
-	  <None Remove="Resources\Images\archive_currency.png" />
-	  <None Remove="Resources\Images\back_arrow.png" />
-	  <None Remove="Resources\Images\currency_archive.png" />
-	  <None Remove="Resources\Images\currency_title_cover.png" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.82" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="RestSharp" Version="112.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Views\CurrenciesViews\CreateCurrencyView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CurrenciesViews\CurrenciesArchiveView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CurrenciesViews\CurrenciyInfoView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\CustomViews\PageHeaderView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MainView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MarktingViews\CreateAdView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\MarktingViews\MarktingArchiveView.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
 	</ItemGroup>
 
 	<ItemGroup>
